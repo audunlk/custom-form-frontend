@@ -5,8 +5,6 @@ import FormPreview from '../components/pagination/FormPreview'
 import { createForm } from '../lib/api/CreateForm';
 import { redirect } from 'next/navigation'
 import MainButton from '../components/MainButton';
-import { Main } from 'next/document';
-
 
 
 export default function FormPaginator() {
@@ -35,7 +33,7 @@ export default function FormPaginator() {
 
 
   return (
-    <div className="flex flex-col  min-h-screen w-full m-auto px-20 ">
+    <div className="flex flex-col w-full m-auto px-20 ">
       {currentPage === 0 && <CreateForm formRecipe={formRecipe} setFormRecipe={setFormRecipe} />}
       {currentPage === 1 && <FormPreview formRecipe={formRecipe} setPayload={setPayload} />}
       <div className="flex w-full justify-between items-center mb-8">
@@ -43,9 +41,7 @@ export default function FormPaginator() {
           style={{ visibility: currentPage !== 0 ? 'visible' : 'hidden' }}
           text="Back"
           onClick={() => setCurrentPage(currentPage - 1)} />
-
         {currentPage === 1 ? (
-        
           <MainButton
             style={{}}
             text="Create Form"
