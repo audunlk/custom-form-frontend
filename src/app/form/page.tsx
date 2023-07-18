@@ -13,7 +13,7 @@ export default function FormPaginator() {
   const [formRecipe, setFormRecipe] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [payload, setPayload] = useState({} as object);
-  const [signedIn, setSignedIn] = useState(true);
+  const [signedIn, setSignedIn] = useState(localStorage.getItem('user') ? true : false);
 
   useEffect(() => {
     console.log(payload)
@@ -23,6 +23,15 @@ export default function FormPaginator() {
   if(!signedIn){
     redirect('/auth/signin')
   }
+
+
+  // const handleFormCreation = async () => {
+  //   const user = JSON.parse(localStorage.getItem('user') || '{}');
+  //   const response = await createForm(payload);
+  //   const databaseGUID = response.data.uniqueIdentifier;
+  //   const newForm = await storeDatabaseInstance(databaseGUID, user.uid);
+  //   redirect(`/form/${databaseGUID}`)
+  // }
 
 
   return (

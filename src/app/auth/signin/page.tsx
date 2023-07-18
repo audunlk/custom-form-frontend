@@ -11,6 +11,10 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { auth } from "../../lib/firebase/firebaseConfig";
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { redirect } from 'next/navigation';
+
 
 function Copyright(props: any) {
   return (
@@ -25,15 +29,34 @@ function Copyright(props: any) {
   );
 }
 
+interface FormData {
+  get: (arg0: string) => any;
+}
 
 export default function SignIn() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    const data: FormData = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
       password: data.get('password'),
     });
+    signInWithEmailAndPassword(auth, data.get('email'), data.get('password'))
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log(user);
+        localStorage.setItem('user', JSON.stringify(user));
+        redirect('/form')
+      }
+      )
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode
+          , errorMessage);
+      });
+
   };
 
   return (

@@ -45,13 +45,6 @@ export default function FormPreview({ formRecipe, setPayload }: { formRecipe: st
         }
     }
 
-    const handleInputChange = (e: any) => {
-        const { name, value } = e.target;
-        setCustomStyles((prevState) => ({
-            ...prevState,
-            [name]: value,
-        }));
-    };
 
     const handleTitleChange = (e: any) => {
         const { value } = e.target;

@@ -2,6 +2,7 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
 import { ReactQueryProvider } from './lib/providers/ReactQueryProvider'
+import NavBar from './components/NavBar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,9 +21,8 @@ export default function RootLayout({
     <ReactQueryProvider>
     <html lang="en">
       <body className={inter.className}>
-        {/* MAKE THE DIV FILL SCREEN  */}
-        {/* <div className="bg-gradient-to-b from-rose-100 to-teal-100 absolute w-screen h-screen -z-10"></div> */}
-
+       {/* navbar */}
+      <NavBar />
         {children}
       </body>
     </html>
